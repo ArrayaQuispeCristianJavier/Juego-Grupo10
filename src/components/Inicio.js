@@ -64,8 +64,14 @@ function Inicio(){
             <div>
                 <Juego
                 nombreJugador = {nombreJugador}
+                nombreJugador2={nombreJugador2}
+
                 puntaje = {puntaje}
+                puntaje2={puntaje2}
+
                 setPuntaje = {setPuntaje}
+                setPuntaje2={setPuntaje2}
+
                 alTerminar = {alTerminar}
                 rondaActual = {rondaActual}
                 setRondaActual = {setRondaActual}
@@ -76,6 +82,7 @@ function Inicio(){
         return(
             <div>
                 <Felicitaciones nombreJugador = {nombreJugador} puntaje = {puntaje}/>
+                <Felicitaciones nombreJugador2 = {nombreJugador2} puntaje2 = {puntaje2}/>
             </div>
         );
     }
