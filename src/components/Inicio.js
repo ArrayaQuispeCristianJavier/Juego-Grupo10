@@ -12,8 +12,14 @@ function Inicio() {
     const [rondaActual, setRondaActual] = useState(1);
 
     const manejarClickJugar = (nombre) => {
-        if (nombreJugador === "" && nombreJugador2 ==="") {
-        setMostrarJuego(false);
+        if (nombreJugador === "" || nombreJugador2 === "") {
+        setMostrarJuego(false); 
+        if(nombreJugador ===""){
+        window.alert("Jugador 1 no registro su nombre")
+        }else if (nombreJugador2 ==="") {
+        window.alert("Jugador 2 no registro su nombre");
+        }
+
         }else{
         setNombreJugador(nombre);
         setNombreJugador2(nombre);
@@ -38,16 +44,16 @@ function Inicio() {
                 <h1>Ingresa tu nombre jugador 1</h1>
                 <input
                     type="text"
-                    placeholder="Nombre del niño"
+                    // placeholder="Nombre del niño"
                     onChange={(e) => setNombreJugador(e.target.value)}
                 />
-                <button onClick={() => manejarClickJugar(nombreJugador)}>Jugar</button>
+                <button onClick={() =>manejarClickJugar(nombreJugador)}>Jugar</button>
             
             {/* Jugador 2 */}
             <h1>Ingresa tu nombre jugador 2</h1>
                 <input
                     type="text"
-                    placeholder="Nombre del niño"
+                    // placeholder="Nombre del niño"
                     onChange={(e) => setNombreJugador2(e.target.value)}
                 />
                 <button onClick={() => manejarClickJugar(nombreJugador2)}>Jugar</button>
