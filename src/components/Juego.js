@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function Juego({ nombreJugador, puntaje, setPuntaje, alTerminar, rondaActual,setRondaActual }) {
+function Juego({ nombreJugador,nombreJugador2, puntaje, setPuntaje,puntaje2,setPuntaje2, alTerminar, rondaActual,setRondaActual }) {
     const [animalObjetivo, setAnimalObjetivo] = useState('');
     const [opciones, setOpciones] = useState([]);
     const [esCorrecto, setEsCorrecto] = useState(null);
@@ -31,11 +31,21 @@ function Juego({ nombreJugador, puntaje, setPuntaje, alTerminar, rondaActual,set
         setOpciones(opcionesAleatorias);
         setAnimalObjetivo(animalCorrecto);
     };
-
+    /*Jugador 1*/
     const verificarRespuesta = (animalSeleccionado) => {
         if (animalSeleccionado === animalObjetivo) {
             setEsCorrecto(true);
             setPuntaje(puntaje + 1);
+        } else {
+            setEsCorrecto(false);
+        }
+        setPuedeHacerClic(false);
+    };
+    /*Jugador 2*/
+    const verificarRespuesta2 = (animalSeleccionado) => {
+        if (animalSeleccionado === animalObjetivo) {
+            setEsCorrecto(true);
+            setPuntaje2(puntaje2 + 1);
         } else {
             setEsCorrecto(false);
         }
@@ -50,6 +60,7 @@ function Juego({ nombreJugador, puntaje, setPuntaje, alTerminar, rondaActual,set
             obtenerOpcionesAleatorias();
         } else {
             alTerminar(puntaje);
+            alTerminar(puntaje2);
         }
     };
 
@@ -61,6 +72,7 @@ function Juego({ nombreJugador, puntaje, setPuntaje, alTerminar, rondaActual,set
 
     return (
         <div>
+            {/* Jugador 1 */}
             <h1>{nombreJugador}, ¿Cuál es este animal?</h1>
             <p>Ronda actual: {rondaActual}</p>
             <img src={`img/${animalObjetivo}.jpg`} alt={animalObjetivo} />
@@ -69,6 +81,25 @@ function Juego({ nombreJugador, puntaje, setPuntaje, alTerminar, rondaActual,set
                     <button
                         key={animal}
                         onClick={() => verificarRespuesta(animal)}
+                        disabled={!puedeHacerClic || opcionesDeshabilitadas}
+                    >
+                        {animal}
+                    </button>
+                ))}
+            </div>
+            {esCorrecto === true && <p>¡Correcto!</p>}
+            {esCorrecto === false && <p>¡Incorrecto!</p>}
+            <button onClick={siguienteRonda}>Siguiente</button>
+        
+        {/* Jugador 2 */}
+        <h1>{nombreJugador2}, ¿Cuál es este animal?</h1>
+            <p>Ronda actual: {rondaActual}</p>
+            <img src={`img/${animalObjetivo}.jpg`} alt={animalObjetivo} />
+            <div>
+                {opciones.map((animal) => (
+                    <button
+                        key={animal}
+                        onClick={() => verificarRespuesta2(animal)}
                         disabled={!puedeHacerClic || opcionesDeshabilitadas}
                     >
                         {animal}
