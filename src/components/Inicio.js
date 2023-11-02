@@ -12,83 +12,81 @@ function Inicio() {
     const [rondaActual, setRondaActual] = useState(1);
 
     const manejarClickJugar = (nombre) => {
-        if (nombreJugador1 === "" || nombreJugador2 === "") {
-        setMostrarJuego(false); 
-        window.alert("Por favor ingresen sus nombres");
-        if(nombreJugador1 ===""){
-        window.alert("Jugador 1 no registro su nombre")
-        }else if (nombreJugador2 ==="") {
-        window.alert("Jugador 2 no registro su nombre");
+        if (nombreJugador1 === "" && nombreJugador2 === "") {
+            window.alert("Por favor ingresen sus nombres");
+        } else {
+            if (nombreJugador1 === "") {
+                window.alert("Por favor jugador 1, ingrese su nombre")
+                setNombreJugador1(nombre);
+            } else if (nombreJugador2 === "") {
+                window.alert("Por favor jugador 2, ingrese su nombre")
+                setNombreJugador2(nombre);
+                //setMostrarJuego(true);
+            }
         }
-
-        }else{
-        setNombreJugador1(nombre);
-        setNombreJugador2(nombre);
-        setMostrarJuego(true);
-        setPuntaje1(0);
-        setMostrarFelicitaciones(false);
+        if (nombreJugador1 !== "" && nombreJugador2 !== "") {
+            setMostrarJuego(true);
         }
     };
 
     const alTerminarJugador1 = (puntaje) => {
-        setPuntaje1(puntaje1 + 1);
-        setMostrarJuego(false);
-        setMostrarFelicitaciones(false);
+        setPuntaje1(puntaje);
+        if (nombreJugador2 === "") {
+            // Si no hay nombre para el jugador 2, permitir que se registre
+            setMostrarJuego(false);
+            setMostrarFelicitaciones(false);
+        } else {
+            // Si ya hay un nombre para el jugador 2, pasar directamente al jugador 2
+            setPuntaje2(0);
+            setMostrarFelicitaciones(false);
+        }
     }
-    const alTerminarJugador2 = (puntaje) =>{
-        setPuntaje2(puntaje2 + 1);
-        setMostrarJuego(false);
-        setMostrarFelicitaciones(false)
-    }
-    
+
+    const alTerminarJugador2 = (puntaje) => {
+        setPuntaje2(puntaje);
+        setMostrarFelicitaciones(true);
+    };
 
     if (!mostrarJuego && !mostrarFelicitaciones) {
         return (
-            
             <div>
-                {/* Jugador 1 */}
                 <h1>Ingresa tu nombre jugador 1</h1>
                 <input
                     type="text"
-                    // placeholder="Nombre del niño"
                     onChange={(e) => setNombreJugador1(e.target.value)}
                 />
-                <button onClick={() =>manejarClickJugar(nombreJugador1)}>Jugar</button>
-            
-            {/* Jugador 2 */}
-            <h1>Ingresa tu nombre jugador 2</h1>
+                <button onClick={() => manejarClickJugar(nombreJugador1)}>Jugar</button>
+
+                <h1>Ingresa tu nombre jugador 2</h1>
                 <input
                     type="text"
-                    // placeholder="Nombre del niño"
                     onChange={(e) => setNombreJugador2(e.target.value)}
                 />
                 <button onClick={() => manejarClickJugar(nombreJugador2)}>Jugar</button>
-            
             </div>
         );
     } else if (mostrarJuego) {
         return (
             <div>
                 <Juego
-                  nombreJugador1={nombreJugador1}
-                  nombreJugador2={nombreJugador2}
-                  puntaje1={puntaje1}
-                  setPuntaje1={setPuntaje1}
-                  puntaje2={puntaje2}
-                  setPuntaje2={setPuntaje2}
-                  alTerminarJugador1={alTerminarJugador1}
-                  alTerminarJugador2={alTerminarJugador2}
-                  rondaActual={rondaActual}
-                  setRondaActual={setRondaActual}
-                
+                    nombreJugador1={nombreJugador1}
+                    nombreJugador2={nombreJugador2}
+                    puntaje1={puntaje1}
+                    setPuntaje1={setPuntaje1}
+                    puntaje2={puntaje2}
+                    setPuntaje2={setPuntaje2}
+                    alTerminarJugador1={alTerminarJugador1}
+                    alTerminarJugador2={alTerminarJugador2}
+                    rondaActual={rondaActual}
+                    setRondaActual={setRondaActual}
                 />
             </div>
         );
     } else if (mostrarFelicitaciones) {
         return (
             <div>
-                <Felicitaciones nombreJugador1={nombreJugador1} puntaje={puntaje1} />
-                <Felicitaciones nombreJugador2={nombreJugador2} puntaje2={puntaje2} />
+                <Felicitaciones nombreJugador={nombreJugador1} puntaje={puntaje1} />
+                <Felicitaciones nombreJugador={nombreJugador2} puntaje={puntaje2} />
             </div>
         );
     }
