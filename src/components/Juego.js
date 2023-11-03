@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import animalData from './../data/animal.json';
 
 /*Componente juego que tiene los props*/
-function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTerminarJugador2,  rondaActual, setRondaActual }) {
+function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,setPuntaje2, alTerminarJugador2,  rondaActual, setRondaActual }) {
   const [animalObjetivo, setAnimalObjetivo] = useState('');
   const [opciones, setOpciones] = useState([]);
   const [esCorrecto, setEsCorrecto] = useState(null);
   const [rondasTotales, setRondasTotales] = useState(Math.floor(Math.random() * 6) + 5);
   const [puedeHacerClic, setPuedeHacerClic] = useState(true);
 
-  const [puntaje1, setPuntaje1] = useState(0);
+  //const [puntaje1, setPuntaje1] = useState(0);
   const [turnoJugador2, setTurnoJugador2] = useState(false)
 
   /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
