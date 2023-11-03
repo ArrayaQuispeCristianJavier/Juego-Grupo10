@@ -8,5 +8,4 @@ function Felicitaciones({ nombreJugador, puntaje,jugador }) {
         </div>
     );
 }
-
 export default Felicitaciones;
