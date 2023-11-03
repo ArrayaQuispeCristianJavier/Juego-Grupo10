@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import animal from './../data/animal.json';
+import Felicitaciones from './Felicitaciones';
 
-function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTerminarJugador2, alTerminarJugador1, rondaActual, setRondaActual }) {
+/*Componente juego que tiene los props*/
+function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTerminarJugador2,  rondaActual, setRondaActual }) {
   const [animalObjetivo, setAnimalObjetivo] = useState('');
   const [opciones, setOpciones] = useState([]);
   const [esCorrecto, setEsCorrecto] = useState(null);
@@ -10,17 +13,19 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
   const [puntaje1, setPuntaje1] = useState(0);
   const [turnoJugador2, setTurnoJugador2] = useState(false)
 
+  /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
   const obtenerAnimalAleatorio = () => {
     const animales = ['gato', 'perro', 'vaca', 'leon', 'jirafa', 'cebra'];
     const indiceAleatorio = Math.floor(Math.random() * animales.length);
     return animales[indiceAleatorio];
   };
 
+  /*Se va a encargar de tener 3 opciones de animales*/
   const obtenerOpcionesAleatorias = () => {
-    const animalCorrecto = obtenerAnimalAleatorio();
-    let opcionesAleatorias = [animalCorrecto];
+    const animalCorrecto = obtenerAnimalAleatorio();//Va a llamar a la funcion 'obtenerAnimalesAleatorio()' para tener un animal
+    let opcionesAleatorias = [animalCorrecto];//opcionesAleatoria es un arreglo que tiene animalCorrecto osea dice que el animal que toque siempre salga en las opciones
 
-    while (opcionesAleatorias.length < 3) {
+    while (opcionesAleatorias.length < 3) {//
       const opcion = obtenerAnimalAleatorio();
       if (!opcionesAleatorias.includes(opcion)) {
         opcionesAleatorias.push(opcion);
@@ -54,6 +59,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
       setPuedeHacerClic(true);
       obtenerOpcionesAleatorias();
       setTurnoJugador2(rondaActual >= rondasTotales / 2);
+      
     } else {
       if (turnoJugador2) {
         alTerminarJugador2(puntaje2);
@@ -65,8 +71,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
     const opcionesDeshabilitadas = esCorrecto !== null;
 
     useEffect(() => {
-      obtenerOpcionesAleatorias(1);
-      obtenerOpcionesAleatorias(2);
+      obtenerOpcionesAleatorias();
     }, []);
 
     return (

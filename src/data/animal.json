@@ -1,0 +1,29 @@
+{
+    "animales":[
+        {
+            "nombre":"gato",
+            "img":"gato.jpg"
+        },
+        {
+            "nombre":"perro",
+            "img":"perro.jpg"
+        },
+        {
+            "nombre":"cebra",
+            "img":"cebra.jpg"
+        },
+        {
+            "nombre":"jirafa",
+            "img":"jirafa.jpg"
+        },
+        {
+            "nombre":"leon",
+            "img":"leon.jpg"
+        },
+        {
+            "nombre":"vaca",
+            "img":"vaca.jpg"
+        }
+        
+    ]
+}
