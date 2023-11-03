@@ -12,6 +12,7 @@ function Inicio() {
     const [rondaActual, setRondaActual] = useState(1);
 
     const manejarClickJugar = (nombre) => {
+        /*Alerta que si un jugador o ambos no pusieron sus nombres*/
         if (nombreJugador1 === "" && nombreJugador2 === "") {
             window.alert("Por favor ingresen sus nombres");
         } else {
@@ -24,6 +25,7 @@ function Inicio() {
                 //setMostrarJuego(true);
             }
         }
+        /*Verifica que los jugadores pongan sus nombres*/
         if (nombreJugador1 !== "" && nombreJugador2 !== "") {
             setMostrarJuego(true);
         }
@@ -32,11 +34,11 @@ function Inicio() {
     const alTerminarJugador1 = (puntaje) => {
         setPuntaje1(puntaje);
         if (nombreJugador2 === "") {
-            // Si no hay nombre para el jugador 2, permitir que se registre
+            
             setMostrarJuego(false);
             setMostrarFelicitaciones(false);
         } else {
-            // Si ya hay un nombre para el jugador 2, pasar directamente al jugador 2
+            
             setPuntaje2(0);
             setMostrarFelicitaciones(false);
         }
