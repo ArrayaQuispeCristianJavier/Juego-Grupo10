@@ -1,5 +1,5 @@
-{
-    "animales":[
+
+    [
         {
             "nombre":"gato",
             "img":"gato.jpg"
@@ -26,4 +26,3 @@
         }
         
     ]
-}

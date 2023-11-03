@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import animal from './../data/animal.json';
-import Felicitaciones from './Felicitaciones';
+import animalData from './../data/animal.json';
 
 /*Componente juego que tiene los props*/
 function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTerminarJugador2,  rondaActual, setRondaActual }) {
@@ -15,7 +14,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
 
   /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
   const obtenerAnimalAleatorio = () => {
-    const animales = ['gato', 'perro', 'vaca', 'leon', 'jirafa', 'cebra'];
+    const animales = animalData;
     const indiceAleatorio = Math.floor(Math.random() * animales.length);
     return animales[indiceAleatorio];
   };
@@ -35,7 +34,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
     opcionesAleatorias = opcionesAleatorias.sort(() => Math.random() - 0.5);
 
     setOpciones(opcionesAleatorias);
-    setAnimalObjetivo(animalCorrecto);
+    setAnimalObjetivo(animalCorrecto.nombre);
   };
 
   const verificarRespuesta = (animalSeleccionado) => {
@@ -82,11 +81,11 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2, setPuntaje2, alTermin
         <div>
           {opciones.map((animal) => (
             <button
-              key={animal}
-              onClick={() => verificarRespuesta(animal)}
+              key={animal.nombre}
+              onClick={() => verificarRespuesta(animal.nombre)}
               disabled={!puedeHacerClic || opcionesDeshabilitadas}
             >
-              {animal}
+              {animal.nombre}
             </button>
           ))}
         </div>
