@@ -24,7 +24,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
     const animalCorrecto = obtenerAnimalAleatorio();//Va a llamar a la funcion 'obtenerAnimalesAleatorio()' para tener un animal
     let opcionesAleatorias = [animalCorrecto];//opcionesAleatoria es un arreglo que tiene animalCorrecto osea dice que el animal que toque siempre salga en las opciones
 
-    while (opcionesAleatorias.length < 3) {//
+    while (opcionesAleatorias.length < 3) {
       const opcion = obtenerAnimalAleatorio();
       if (!opcionesAleatorias.includes(opcion)) {
         opcionesAleatorias.push(opcion);
@@ -38,10 +38,10 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
   };
 
   const verificarRespuesta = (animalSeleccionado) => {
-    if (animalSeleccionado === animalObjetivo) {
-      if (!turnoJugador2) {
+    if (animalSeleccionado === animalObjetivo) {//Verifica si la opcion que eligio el usuario es igual a la opcion que le dio de forma aleatoria 
+      if (!turnoJugador2) {//Si no es el turno de jugador 2 entonces se le aumenta el puntaje al jugador 1
         setPuntaje1(puntaje1 + 1);
-      } else {
+      } else {//En caso que SI sea turno del jugador 2 entonces este le aumenta su puntaje a el (jugador 2)
         setPuntaje2(puntaje2 + 1);
       }
       setEsCorrecto(true);
@@ -57,8 +57,10 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
       setEsCorrecto(null);
       setPuedeHacerClic(true);
       obtenerOpcionesAleatorias();
+      /*Explicacion con detalles: Va a cambiar de ronda una vez que se haya completado la mitad de la ronda */
+      //Si la ronda actual es igual o mayor a ronda totales dara el aviso que esta a la mitad y cambiara de jugador
+      //Por ejemplo si son 10 rondas este dividira en 2 y daria como resultado 5 y que en la ronda 5, seguira el otro jugador
       setTurnoJugador2(rondaActual >= rondasTotales / 2);
-      
     } else {
       if (turnoJugador2) {
         alTerminarJugador2(puntaje2);
@@ -75,6 +77,7 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
 
     return (
       <div>
+        {/* Si el turno de jugador es falso, mostrara al jugador 1 o sino pasa lo contrario */}
         <h1>{!turnoJugador2 ? nombreJugador1 : nombreJugador2}, ¿Cuál es este animal?</h1>
         <p>Ronda actual: {rondaActual}</p>
         <img src={`img/${animalObjetivo}.jpg`} alt={animalObjetivo} />
