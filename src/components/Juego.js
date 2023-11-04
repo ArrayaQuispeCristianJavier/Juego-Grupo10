@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import animalData from './../data/animal.json';
+import animal from './../data/animal.json';
 
 /*Componente juego que tiene los props*/
 function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,setPuntaje2, alTerminarJugador2,  rondaActual, setRondaActual }) {
@@ -9,12 +9,12 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
   const [rondasTotales, setRondasTotales] = useState(Math.floor(Math.random() * 6) + 5);
   const [puedeHacerClic, setPuedeHacerClic] = useState(true);
 
-  //const [puntaje1, setPuntaje1] = useState(0);
+  
   const [turnoJugador2, setTurnoJugador2] = useState(false)
 
   /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
   const obtenerAnimalAleatorio = () => {
-    const animales = animalData;
+    const animales = animal;
     const indiceAleatorio = Math.floor(Math.random() * animales.length);
     return animales[indiceAleatorio];
   };
