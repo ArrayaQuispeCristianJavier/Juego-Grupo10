@@ -1,0 +1,18 @@
+body{
+    background-color:rgb(219, 172, 115);
+    text-align: center;
+    font-style: italic;
+}
+h1{
+    color:brown;
+  font-style: italic;
+}
+button{
+    background-color:rgb(255, 213, 183);
+    font-style: italic;
+}
+input{
+    background-color: rgb(255, 233, 218);
+    color: rgb(131, 55, 0);
+    font-style: italic;
+}
