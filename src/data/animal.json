@@ -1,28 +1,28 @@
 
     [
         {
-            "nombre":"gato",
-            "img":"gato.jpg"
+            "nombre":"Cat",
+            "img":"Cat.jpg"
         },
         {
-            "nombre":"perro",
-            "img":"perro.jpg"
+            "nombre":"Dog",
+            "img":"Dog.jpg"
         },
         {
-            "nombre":"cebra",
-            "img":"cebra.jpg"
+            "nombre":"Zebra",
+            "img":"Zebra.jpg"
         },
         {
-            "nombre":"jirafa",
-            "img":"jirafa.jpg"
+            "nombre":"Giraffe",
+            "img":"Giraffe.jpg"
         },
         {
-            "nombre":"leon",
-            "img":"leon.jpg"
+            "nombre":"Lion",
+            "img":"Lion.jpg"
         },
         {
-            "nombre":"vaca",
-            "img":"vaca.jpg"
+            "nombre":"Cow",
+            "img":"Cow.jpg"
         }
         
     ]

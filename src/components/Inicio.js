@@ -16,13 +16,13 @@ function Inicio() {
     const manejarClickJugar = (nombre) => {
         /*Alerta que si un jugador o ambos no pusieron sus nombres*/
         if (nombreJugador1 === "" && nombreJugador2 === "") {
-            window.alert("Por favor ingresen sus nombres");
+            window.alert("Please insert your names");
         } else {
             if (nombreJugador1 === "") {
-                window.alert("Por favor jugador 1, ingrese su nombre")
+                window.alert("Player1, please insert your name")
                 setNombreJugador1(nombre);
             } else if (nombreJugador2 === "") {
-                window.alert("Por favor jugador 2, ingrese su nombre")
+                window.alert("Player2, please insert your name")
                 setNombreJugador2(nombre);
                 //setMostrarJuego(true);
             }
@@ -54,19 +54,19 @@ function Inicio() {
     if (!mostrarJuego && !mostrarFelicitaciones) {
         return (
             <div>
-                <h1>Ingresa tu nombre jugador 1</h1>
+                <h1>Insert your name Player1</h1>
                 <input
                     type="text"
                     onChange={(e) => setNombreJugador1(e.target.value)}
                 />
-                <button onClick={() => manejarClickJugar(nombreJugador1)}>Jugar</button>
+                <button onClick={() => manejarClickJugar(nombreJugador1)}>Play</button>
 
-                <h1>Ingresa tu nombre jugador 2</h1>
+                <h1>Insert your name Player2</h1>
                 <input
                     type="text"
                     onChange={(e) => setNombreJugador2(e.target.value)}
                 />
-                <button onClick={() => manejarClickJugar(nombreJugador2)}>Jugar</button>
+                <button onClick={() => manejarClickJugar(nombreJugador2)}>Play</button>
             </div>
         );
     } else if (mostrarJuego) {
