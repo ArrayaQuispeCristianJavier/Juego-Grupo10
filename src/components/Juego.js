@@ -78,8 +78,8 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
     return (
       <div>
         {/* Si el turno de jugador es falso, mostrara al jugador 1 o sino pasa lo contrario */}
-        <h1>{!turnoJugador2 ? nombreJugador1 : nombreJugador2}, ¿Cuál es este animal?</h1>
-        <p>Ronda actual: {rondaActual}</p>
+        <h1>{!turnoJugador2 ? nombreJugador1 : nombreJugador2}, Which animal is this?</h1>
+        <p>Round: {rondaActual}</p>
         <img src={`img/${animalObjetivo}.jpg`} alt={animalObjetivo} />
         <div>
           {opciones.map((animal) => (
@@ -92,9 +92,9 @@ function Juego({ nombreJugador1, nombreJugador2, puntaje2,puntaje1,setPuntaje1,s
             </button>
           ))}
         </div>
-        {esCorrecto === true && <p>¡Correcto!</p>}
-        {esCorrecto === false && <p>¡Incorrecto!</p>}
-        <button onClick={siguienteRonda}>Siguiente</button>
+        {esCorrecto === true && <p>You're right!</p>}
+        {esCorrecto === false && <p>Incorrect!</p>}
+        <button onClick={siguienteRonda}>Next round</button>
       </div>
     );
   };

@@ -4,7 +4,7 @@ function Felicitaciones({ nombreJugador, puntaje,jugador }) {
     return (
         <div>
             <h1>{nombreJugador}</h1>
-            <p>Tu puntaje de {jugador}: {puntaje}</p>
+            <p>Your score is {jugador}: {puntaje}</p>
         </div>
     );
 }
