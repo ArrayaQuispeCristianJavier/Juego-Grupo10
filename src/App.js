@@ -1,7 +1,7 @@
-import Inicio from "./components/Inicio"
+import Start from "./components/Start"
 function App(){
     return(
-        <Inicio/>
+        <Start/>
     )
 }
 export default App;
