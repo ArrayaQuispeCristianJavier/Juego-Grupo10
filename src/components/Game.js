@@ -8,7 +8,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
   const [isCorrect, setIsCorrect] = useState(null);
   const [totalRounds, SetTotalRounds] = useState(Math.floor(Math.random() * 6) + 5);
   const [canClick, setCanClick] = useState(true);
-
+  const [pointTopMessage, setPointMessage] = useState(false)
   
   const [Player2Turn, setPlayer2Turn] = useState(false)
 
@@ -67,9 +67,18 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
       } else {
         setPlayer2Turn(true);
       }
+      pointTop();
     }
   }
     const disabledOptions = isCorrect !== null;
+
+    const pointTop = () => {
+      if (score1 > score2) {
+        window.alert("The player 1 had the highest score");
+      }else if (score2 > score1) {
+        window.alert("Player 2 had the highest score");
+      }
+    }
 
     useEffect(() => {
       getRandomOptions();
@@ -96,6 +105,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
         {isCorrect === false && <p>Incorrect!</p>}
         <button onClick={nextRound}>Next round</button>
       </div>
+      
     );
   };
 
