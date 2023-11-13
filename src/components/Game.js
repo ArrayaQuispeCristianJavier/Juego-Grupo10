@@ -12,6 +12,12 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
   
   const [Player2Turn, setPlayer2Turn] = useState(false)
 
+  /*Hook para hacer el comodin y controlarlo*/
+  const [comodin, setComodin] = useState(null);
+  const [comodinUso, setComodinUso] = useState(false);
+
+  const[winner, setWinner] = useState(null);
+
   /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
   const getRandomAnimal = () => {
     const animals = animal;
@@ -39,7 +45,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
 
   const verifyAnswer = (selectedAnimal) => {
     if (selectedAnimal === targetAnimal) {//Verifica si la opcion que eligio el usuario es igual a la opcion que le dio de forma aleatoria 
-      if (!Player2Turn) {//Si no es el turno de jugador 2 entonces se le aumenta el puntaje al jugador 1
+      if (!Player2Turn){//Si no es el turno de jugador 2 entonces se le aumenta el puntaje al jugador 1
         setScore1(score1 + 1);
       } else {//En caso que SI sea turno del jugador 2 entonces este le aumenta su puntaje a el (jugador 2)
         setScore2(score2 + 1);
@@ -52,7 +58,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
   };
 
   const nextRound = () => {
-    if (actualRound < totalRounds) {
+    if (actualRound < totalRounds * 2) {
       setActualRound(actualRound + 1);
       setIsCorrect(null);
       setCanClick(true);
@@ -60,7 +66,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
       /*Explicacion con detalles: Va a cambiar de ronda una vez que se haya completado la mitad de la ronda */
       //Si la ronda actual es igual o mayor a ronda totales dara el aviso que esta a la mitad y cambiara de jugador
       //Por ejemplo si son 10 rondas este dividira en 2 y daria como resultado 5 y que en la ronda 5, seguira el otro jugador
-      setPlayer2Turn(actualRound >= totalRounds / 2);
+      setPlayer2Turn(actualRound  >= totalRounds);
     } else {
       if (Player2Turn) {
         Player2Finishes(score2);
@@ -74,9 +80,9 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
 
     const pointTop = () => {
       if (score1 > score2) {
-        window.alert("The player 1 had the highest score");
+        setWinner(playerName1);
       }else if (score2 > score1) {
-        window.alert("Player 2 had the highest score");
+        setWinner(playerName2);
       }
     }
 
@@ -103,7 +109,7 @@ function Game({ playerName1, playerName2, score2,score1,setScore1,setScore2, Pla
         </div>
         {isCorrect === true && <p>You're right!</p>}
         {isCorrect === false && <p>Incorrect!</p>}
-        <button onClick={nextRound}>Next round</button>
+        <button onClick={nextRound}>Next round</button>  
       </div>
       
     );

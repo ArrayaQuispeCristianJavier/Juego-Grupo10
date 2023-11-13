@@ -88,10 +88,22 @@ function Start() {
             </div>
         );
     } else if (displayCongratulations) {
+        let winnerName = '';
+        let winnerScore = 0;
+        if (score1 > score2) {
+        winnerName = playerName1;
+        winnerScore = score1;
+        }else if(score2 > score1){
+        winnerName = playerName2;
+        winnerScore = score2;
+        }
         return (
             <div>
                 <Congratulations playerName={playerName1} score={score1} />
-                <Congratulations playerName={playerName2} score={score2} />
+                <Congratulations playerName={playerName2} score={score2} /><br></br>
+                <h1>The player with the highest score!</h1>
+                <Congratulations playerName={winnerName} score={winnerScore}/>
+                <p>Congratulations!</p>
             </div>
         );
     }
