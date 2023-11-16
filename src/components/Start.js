@@ -12,6 +12,10 @@ function Start() {
     const [displayCongratulations, setDisplayCongratulations] = useState(false);//Estado que mostrara la pantalla final al terminar las rondas
     const [actualRound, setActualRound] = useState(1);//Estado que guardara el estado de la ronda actual
 
+    /*Definimos los estados en start que tenemos en game y hacerlo como props 77 y llamarlo a game*/
+    const [comodinUso, setComodinUso] = useState(false);//Comodin jugador 1
+    const [comodinUso2, setComodinUso2] = useState(false);//Comodin jugador 2 
+
     /*Se va a llamar a esta funcion cada vez que los jugadores presionen sobre el boton y va a hacer las verificaciones de los nombres*/
     const ClickToPlay = (name) => {
         /*Alerta que si un jugador o ambos no pusieron sus nombres*/
@@ -35,7 +39,7 @@ function Start() {
     /*Se lo va a llamar una vez que el jugador X termine su turno*/
     const Player1Finishes = (score) => {//Recibe el argumento 'puntaje' que sera la puntacion obtenida del jugador 1
         setScore1(score);//Actualiza la puntuacion del jugador 1 con el valor de 'puntaje' osea el puntaje obtenido al terminar su turno
-        if (playerName2 === "") {          
+        if (playerName2 === "") {
             setDisplayGame(false);
             setDisplayCongratulations(false);
         } else {//Si el jugador ingreso su nombre resetea la puntuacion a 0 para la otra ronda         
@@ -73,7 +77,7 @@ function Start() {
         return (
             <div>
                 <Game
-                /*PROPS*/
+                    /*PROPS*/
                     playerName1={playerName1}
                     playerName2={playerName2}
                     score1={score1}
@@ -84,6 +88,10 @@ function Start() {
                     Player2Finishes={Player2Finishes}
                     actualRound={actualRound}
                     setActualRound={setActualRound}
+                    comodinUso={comodinUso}
+                    setComodinUso={setComodinUso}
+                    comodinUso2={comodinUso2}
+                    setComodinUso2={setComodinUso2}
                 />
             </div>
         );
@@ -91,18 +99,18 @@ function Start() {
         let winnerName = '';
         let winnerScore = 0;
         if (score1 > score2) {
-        winnerName = playerName1;
-        winnerScore = score1;
-        }else if(score2 > score1){
-        winnerName = playerName2;
-        winnerScore = score2;
+            winnerName = playerName1;
+            winnerScore = score1;
+        } else if (score2 > score1) {
+            winnerName = playerName2;
+            winnerScore = score2;
         }
         return (
             <div>
                 <Congratulations playerName={playerName1} score={score1} />
                 <Congratulations playerName={playerName2} score={score2} /><br></br>
                 <h1>The player with the highest score!</h1>
-                <Congratulations playerName={winnerName} score={winnerScore}/>
+                <Congratulations playerName={winnerName} score={winnerScore} />
                 <p>Congratulations!</p>
             </div>
         );
