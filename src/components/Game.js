@@ -11,8 +11,6 @@ function Game({ playerName1, playerName2, score2, score1, setScore1, setScore2, 
 
   const [Player2Turn, setPlayer2Turn] = useState(false);
 
- 
-
 
 
   /*Va a obtener un animal de forma aleatoria del arreglo 'animales' y devuelve el animal seleccionado*/
@@ -74,17 +72,40 @@ function Game({ playerName1, playerName2, score2, score1, setScore1, setScore2, 
   }
   const disabledOptions = isCorrect !== null;
 
+
   const comodinFuncion = () => {
     /*Si el jugador 2 no es su turno y el comodin no fue usado*/
     if (!Player2Turn && !comodinUso) {
       console.log("El jugador 1 uso el comodin");
       setComodinUso(true);
-      
+
+      //Recorre el arreglo de los animales elegido
+      for (let i = 0; i < options.length; i++) {
+        //El arreglo tiene mas de dos opciones
+        if (options.length > 2) {//devuelve la cantidad del arreglo
+          //Que recorra el arreglo que aumenta la cantidad con i++ del for y me de el nombre y preguntar si no es igual al animal elegido que es verdadero 
+          if (options[i].name !== targetAnimal.name) {
+            //va a recorriendo los elemento options con option y va a obtener el nombre de ese arreglo, y pregunta si es diferente que el 
+            const deleteRandomOption = options.filter(option => option.name !== options[i].name);
+            setOptions(deleteRandomOption);
+            console.log("Se elimino una opcion");
+          }
+        }
+      }
       console.log(`El animal correcto es ${targetAnimal}`);
     } else if (Player2Turn && !comodinUso2) {
       console.log("El jugador 2 uso el comodin")
       setComodinUso2(true);
-      
+      for (let i = 0; i < options.length; i++) {
+        if (options.length > 2) {
+          if (options[i].name !== targetAnimal.name) {
+            const deleteRandomOption = options.filter(option => option.name !== options[i].name);
+            setOptions(deleteRandomOption);
+            console.log("Se elimino una opcion");
+          }
+        }
+      }
+
       console.log(`El animal correcto es ${targetAnimal}`);
     }
   }
@@ -114,9 +135,8 @@ function Game({ playerName1, playerName2, score2, score1, setScore1, setScore2, 
       {isCorrect === false && <p>Incorrect!</p>}
       <button onClick={nextRound}>Next round</button>
 
-      {!comodinUso && !Player2Turn ? <button  onClick={comodinFuncion}>Comodin</button> : <></>}
-      {!comodinUso2 && Player2Turn ? <button  onClick={comodinFuncion}>Comodin 2</button> : <></>}
-    
+      {!comodinUso && !Player2Turn || !comodinUso2 && Player2Turn ? <button onClick={comodinFuncion}>Comodin</button> : <></>}
+
     </div>
   );
 };
